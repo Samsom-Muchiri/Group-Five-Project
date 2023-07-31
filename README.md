@@ -54,4 +54,5 @@ Contributions are welcome! If you encounter any issues or have suggestions for i
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This is the dev branch were all other development brunches are surposed to be branched from. 
+Always remember not to merge any update with the main branch or update the directly.
