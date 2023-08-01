@@ -1,41 +1,40 @@
-.item-listing{
-    padding-top: 20vh;
+.item-listing {
+  padding-top: 150px;
 }
-.silder-header{
-    text-align: center;
+.silder-header {
+  text-align: center;
 }
-.slider{
-    height: 35vh;
-    overflow-x: scroll;
+.slider {
+  height: 35vh;
+  overflow-x: scroll;
 }
-.slider::-webkit-scrollbar{
-    display: none;
+.slider::-webkit-scrollbar {
+  display: none;
 }
-.slider-item-wrapper{
-    position: relative;
-    display: flex;
-    height: 100%;
-    gap: 10px;
+.slider-item-wrapper {
+  display: flex;
+  height: 100%;
+  gap: 10px;
 }
-.silder-item{
-    width: 50vw;
-    aspect-ratio: 1.1;
-    background-color: #607c3c;
+.silder-item {
+  width: 50vw;
+  aspect-ratio: 1.1;
+  background-color: #607c3c;
 }
-.slider-button{
-    position: absolute;
-     top: 45%;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    background-color:#ececa3;
-    display: grid;
-    place-items: center;
-    z-index: 2;
+.slider-button {
+  position: absolute;
+  top: 45%;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #ececa3;
+  display: grid;
+  place-items: center;
+  z-index: 2;
 }
-.btn-right{
-   right: 3%;
+.btn-right {
+  right: 3%;
 }
-.btn-left{
-   left: 3%;
+.btn-left {
+  left: 3%;
 }

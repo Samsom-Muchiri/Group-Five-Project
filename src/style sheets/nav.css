@@ -1,100 +1,161 @@
-nav{
-    width: 100vw;
-    margin-top: 0px;
-    position: fixed;
-    z-index: 7;
-    background-color: white;
+nav {
+  width: 100vw;
+  margin-top: 0px;
+  position: fixed;
+  z-index: 7;
+  background-color: white;
 }
-.logo-header{
-    width: 90%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #abc32f;
-    padding: 0%;
-    margin: 0px 5vw;
+.log-btn a {
+  all: unset;
+  margin: 0px 5px;
+  cursor: pointer;
 }
-.logo-header h1{
-    font-size: 30px;
+.log-btn a:active {
+  color: #607c3c;
 }
-nav form{
-    display: flex;
-    justify-content: center;
-    position: relative;
+.logo-header {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #abc32f;
+  padding: 0%;
+  margin: 0px 5vw;
 }
-nav form button{
+.logo-header h1 {
+  font-size: 30px;
+}
+nav form {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+nav form button {
+  display: none;
+}
+.search {
+  position: absolute;
+  top: -90%;
+  left: 27%;
+  cursor: pointer;
+}
+nav form input {
+  width: 50vw;
+  padding: 7px 40px;
+  border-radius: 10px;
+  border: solid 1px;
+  margin-top: -20px;
+  color: green;
+  outline: #abc32f;
+}
+.options ul {
+  background-color: #abc32f;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+.options ul li {
+  list-style: none;
+  margin: 0px 20px;
+  cursor: pointer;
+}
+.options ul li:hover .sub-menu ul {
+  display: block;
+}
+.sub-menu ul {
+  width: 100vw;
+  position: absolute;
+  left: 0%;
+  height: 200px;
+  background-color: #ececa3;
+  display: none;
+}
+.sub-menu ul li {
+  width: 90%;
+}
+.cart-icon {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #607c3c;
+  top: 73%;
+  right: 5%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.292);
+}
+.cart-icon:hover {
+  background-color: #abc32f;
+}
+.cart-icon:active {
+  background-color: #ececa3;
+}
+.cart-icon::after {
+  content: attr(datacount);
+  display: grid;
+  place-items: center;
+  width: 13px;
+  height: 13px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  font-size: small;
+}
+.mobile-log {
+  display: none;
+}
+@media (max-width: 25px) {
+  nav {
+    height: 100vh;
+    width: 5vw;
+    background-color: transparent;
+  }
+  .logo-header {
     display: none;
-}
-.search{
+  }
+  nav form {
     position: absolute;
-    top: -90%;
-    left: 27%;
-    cursor: pointer;
-}
-nav form input{
-    width: 50vw;
-    padding: 7px 40px;
-    border-radius: 10px;
-    border: solid 1px;
-    margin-top: -20px;
-    color: green;
-    outline: #abc32f;
-}
-.options ul{
-    background-color: #abc32f;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-}
-.options ul li{
-    list-style: none;
-    margin: 0px 20px;
-    cursor: pointer;
-}
-.options ul li:hover .sub-menu ul{
+    width: 100vw;
+    z-index: 10;
+    margin-top: 30px;
+    height: fit-content;
+  }
+  nav form input {
+    width: 80%;
+  }
+  .search {
+    left: 12%;
+  }
+  .cart-icon {
+    top: 5%;
+    right: -305%;
+  }
+  .options {
+    width: fit-content;
+    transform: translate(-100%);
+  }
+  .options ul {
     display: block;
-}
-.sub-menu ul{
-    width: 100vw;
-    position: absolute;
-    left: 0%;
-    height: 200px;
-    background-color:#ececa3;
-    z-index: 5px;
-    display: none;
-}
-.sub-menu ul li{
-    width: 90%;
-}
-.cart-icon{
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #607c3c;
-    top: 73%;
-    right: 5%;
-    display: grid;
-    place-items: center;
-    cursor: pointer;
-    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.292);
-}
-.cart-icon:hover{
-    background-color: #abc32f;
-}
-.cart-icon:active{
-    background-color: #ececa3;
-}
-.cart-icon::after{
-    content: attr(datacount);
-    display: grid;
-    place-items: center;
-    width: 13px;
-    height: 13px;
-    background-color: white;
-    border-radius: 50%;
-    position: absolute;
-    top: 10%;
-    right: 10%;
-    font-size: small;
+    width: 50vw;
+    height: 100vh;
+    margin-top: 0%;
+    padding-top: 30px;
+  }
+  .options ul li {
+    margin: 20px;
+    font-size: 20px;
+  }
+  .options .sub-menu ul {
+    height: fit-content;
+    background-color: transparent;
+    padding: 0%;
+    position: static;
+  }
+  .mobile-log {
+    display: block;
+  }
 }
