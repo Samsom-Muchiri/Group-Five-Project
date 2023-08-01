@@ -1,24 +1,23 @@
 import React, { useRef } from "react";
-import "../style sheets/LandingPage.css"
+import "../style sheets/LandingPage.css";
 
 function LandingPage() {
-
-  const slider = useRef()
+  const slider = useRef();
   function handleScrollLeft() {
-    const scrollLenth = slider.current.scrollWidth / 2
-    console.log(scrollLenth)
+    const scrollLenth = slider.current.scrollWidth / 2;
+    console.log(scrollLenth);
     slider.current.scrollTo({
       left: scrollLenth,
-      behavior: "smooth"
-    })
+      behavior: "smooth",
+    });
   }
   function handleScrollRight() {
-    const scrollLenth = slider.current.scrollWidth / -2
-    console.log(scrollLenth)
+    const scrollLenth = slider.current.scrollWidth / -2;
+    console.log(scrollLenth);
     slider.current.scrollTo({
       left: scrollLenth,
-      behavior: "smooth"
-    })
+      behavior: "smooth",
+    });
   }
 
   return (
