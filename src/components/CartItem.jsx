@@ -19,8 +19,7 @@ function CartItem() {
     const newVl = e.target.value;
     setQuantityCount((prev) => prev + newVl);
   }
-  console.log(quantityCount);
-  console.log(itemObj);
+
   const totalPrice = itemObj.reduce((acc, price) => acc + price.price, 0);
   const newItem = itemObj.map((itm) => {
     const { name, price, image } = itm;
