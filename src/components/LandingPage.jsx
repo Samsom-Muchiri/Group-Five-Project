@@ -1,5 +1,5 @@
 import React, { useContext, useRef } from "react";
-import "../style sheets/LandingPage.css";
+import "../style sheets/landingPage.css";
 import { Appcontext } from "../context/Contexts";
 
 function LandingPage() {
