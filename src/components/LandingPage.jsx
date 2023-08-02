@@ -13,17 +13,17 @@ function LandingPage() {
   }
   function handleScrollRight() {
     const scrollLenth = slider.current.scrollWidth / -2;
-    console.log(scrollLenth);
     slider.current.scrollTo({
       left: scrollLenth,
       behavior: "smooth",
     });
   }
-
+  console.log("renderd");
   return (
     <div className="item-listing">
       <div className="container">
         <div className="silder-header">
+          <h1 className="mobile-header">Green Space</h1>
           <h2>Best offers</h2>
         </div>
         <div className="slider" ref={slider}>

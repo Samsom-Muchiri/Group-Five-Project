@@ -38,3 +38,16 @@
 .btn-left {
   left: 3%;
 }
+.mobile-header {
+  display: none;
+}
+@media (max-width: 625px) {
+  .item-listing {
+    padding-top: 0px;
+  }
+  .mobile-header {
+    display: block;
+    padding-top: 50px;
+    color: #809c13;
+  }
+}

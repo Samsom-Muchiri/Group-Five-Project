@@ -79,11 +79,12 @@ nav form input {
   height: 50px;
   border-radius: 50%;
   background-color: #607c3c;
-  top: 73%;
+  top: 15%;
   right: 5%;
   display: grid;
   place-items: center;
   cursor: pointer;
+  z-index: 7;
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.292);
 }
 .cart-icon:hover {
@@ -108,7 +109,16 @@ nav form input {
 .mobile-log {
   display: none;
 }
-@media (max-width: 25px) {
+.cart-desck {
+  display: none;
+}
+.mobile-menu {
+  display: none;
+}
+.mobile-search {
+  display: none;
+}
+@media (max-width: 625px) {
   nav {
     height: 100vh;
     width: 5vw;
@@ -120,29 +130,48 @@ nav form input {
   nav form {
     position: absolute;
     width: 100vw;
-    z-index: 10;
-    margin-top: 30px;
+    z-index: 8;
+    margin-top: 15vh;
     height: fit-content;
+    pointer-events: none;
+    display: none;
+  }
+  nav form .fa-times {
+    color: white;
+    padding: 10px 10px;
+    font-size: 20px;
+    pointer-events: all;
+    cursor: pointer;
   }
   nav form input {
-    width: 80%;
+    width: 75%;
+    margin-top: 0%;
+    pointer-events: all;
+    padding-left: 40px;
+    font-size: larger;
   }
   .search {
-    left: 12%;
+    left: 13%;
+    margin-top: 50px;
+    pointer-events: all;
   }
-  .cart-icon {
+  .cart-mobile {
     top: 5%;
-    right: -305%;
+    right: 5%;
   }
   .options {
     width: fit-content;
+    margin-top: -40px;
     transform: translate(-100%);
+    z-index: 5;
+    transition: 0.3s ease-out;
   }
   .options ul {
     display: block;
     width: 50vw;
     height: 100vh;
     margin-top: 0%;
+    background-color: #ececa3;
     padding-top: 30px;
   }
   .options ul li {
@@ -157,5 +186,24 @@ nav form input {
   }
   .mobile-log {
     display: block;
+    color: #abc32f;
+  }
+  .mobile-menu {
+    display: grid;
+    place-items: center;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+  }
+  .mobile-search {
+    display: block;
+    position: absolute;
+    top: 6.5%;
+    left: 20%;
   }
 }
