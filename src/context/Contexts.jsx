@@ -4,10 +4,14 @@ import { useNavigate } from "react-router-dom";
 
 const Appcontext = createContext();
 function Contexts({ children }) {
-  const [cartState, setCartState] = useState({ transform: "translate(150%)" });
+  const [cartState, setCartState] = useState({
+    transform: "translate(150%)",
+    boxShadow: " 0px 0px 0px 1000px rgba(0, 0, 0, 0.669)",
+  });
   const [isClosed, setIsClosed] = useState(true);
   const [itemsData, setItemsData] = useState([]);
   const [userState, setUserState] = useState(null);
+  const [clckedItem, setClickedItem] = useState([]);
   const [users, setUsers] = useState([
     {
       first_name: "string",
@@ -34,7 +38,13 @@ function Contexts({ children }) {
     formFunction: handleForms,
     userIsLoged: userState,
     items: itemsData,
+    addedItems: clckedItem,
+    addTocartF: handleAddtocart,
   };
+  /* handle add to cart data */
+  function handleAddtocart(ItemInfo) {
+    setClickedItem((prev) => [...prev, ItemInfo]);
+  }
   /* Fetch products */
   useEffect(() => {
     fetch(PRODUCT_URL)

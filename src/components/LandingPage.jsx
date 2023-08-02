@@ -7,6 +7,27 @@ function LandingPage() {
   function generateHString(number) {
     return "⭐".repeat(number);
   }
+  const itemsData = vl.addedItems;
+  console.log(itemsData);
+  function handleAddToCart(product_name, unit_price, product_full_image, e) {
+    const foundObject = itemsData.find((item) => item.name === product_name);
+
+    const ItemInfo = {
+      name: product_name,
+      price: unit_price,
+      image: product_full_image,
+    };
+    console.log(foundObject);
+    console.log(product_name);
+    if (foundObject === undefined) {
+      vl.addTocartF(ItemInfo);
+    } else {
+      if (foundObject.product_name === product_name) {
+        console.log(foundObject.product_name);
+        /*  vl.addTocartF(ItemInfo); */
+      }
+    }
+  }
   const itemObj = vl.items;
   const item = itemObj.map((itm) => {
     const {
@@ -29,8 +50,15 @@ function LandingPage() {
           </div>
         </div>
         <div className="access">
-          <p>{unit_price}</p>
-          <button>Add to cart</button>
+          <p>Ksh{unit_price}</p>
+          <button
+            className="add-btn"
+            onClick={() =>
+              handleAddToCart(product_name, unit_price, product_full_image)
+            }
+          >
+            Add to cart
+          </button>
           <span>{generateHString(ranking)}</span>
         </div>
       </div>

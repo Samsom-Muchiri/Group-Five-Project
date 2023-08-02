@@ -8,6 +8,7 @@ function Nav() {
   const [menuIsOpen, setMenuIsOpen] = useState(true);
   const [searchIsOpen, setSearchIsOpen] = useState(false);
   const vl = useContext(Appcontext);
+  const itemCount = vl.addedItems.length;
   const navigate = useNavigate();
   useEffect(() => {
     navigate("/");
@@ -32,7 +33,6 @@ function Nav() {
         }
       }
     } else {
-      console.log("set");
       setMenuIsOpen(false);
     }
   }
@@ -42,7 +42,6 @@ function Nav() {
   }
   function closeSearch() {
     setSearchIsOpen(false);
-    console.log("clicked");
   }
   return (
     <>
@@ -118,7 +117,11 @@ function Nav() {
             </li>
           </ul>
         </div>
-        <div className="cart-icon cart-desck" datacount={0} onClick={openCart}>
+        <div
+          className="cart-icon cart-desck"
+          datacount={itemCount}
+          onClick={openCart}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="icon icon-tabler icon-tabler-basket"
@@ -138,7 +141,11 @@ function Nav() {
           </svg>
         </div>
 
-        <div className="cart-icon cart-mobile" datacount={0} onClick={openCart}>
+        <div
+          className="cart-icon cart-mobile"
+          datacount={itemCount}
+          onClick={openCart}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="icon icon-tabler icon-tabler-basket"
