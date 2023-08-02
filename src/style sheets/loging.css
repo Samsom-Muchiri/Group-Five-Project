@@ -1,0 +1,28 @@
+.form-wrapper {
+  padding-top: 200px;
+  display: flex;
+  justify-content: center;
+}
+form span {
+  font-size: small;
+  color: blue;
+}
+.input-container {
+  display: grid;
+  grid-template-rows: repeat(1fr, 2);
+}
+.input-container input {
+  all: unset;
+  border-bottom: solid 1px gray;
+  padding-left: 10px;
+}
+.btn {
+  all: unset;
+  margin-top: 20px;
+  padding: 8px 15px;
+  background-color: #809c13;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: #add50d;
+}
