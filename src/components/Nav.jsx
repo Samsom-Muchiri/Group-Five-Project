@@ -137,50 +137,53 @@ function Nav() {
             <path d="M12 15m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
           </svg>
         </div>
+
+        <div className="cart-icon cart-mobile" datacount={0} onClick={openCart}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="icon icon-tabler icon-tabler-basket"
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="#000000"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M7 10l5 -6l5 6" />
+            <path d="M21 10l-2 8a2 2.5 0 0 1 -2 2h-10a2 2.5 0 0 1 -2 -2l-2 -8z" />
+            <path d="M12 15m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+          </svg>
+        </div>
+        <div className="mobile-menu" onClick={handleMObileMenu}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="icon icon-tabler icon-tabler-align-left"
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="#000000"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M4 6l16 0" />
+            <path d="M4 12l10 0" />
+            <path d="M4 18l14 0" />
+          </svg>
+        </div>
+        <div className="mobile-search">
+          <i
+            className="fa fa-search "
+            aria-hidden="true"
+            onClick={openSearch}
+          ></i>
+        </div>
       </nav>
-      <div className="cart-icon cart-mobile" datacount={0} onClick={openCart}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="icon icon-tabler icon-tabler-basket"
-          width="28"
-          height="28"
-          viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="#000000"
-          fill="none"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M7 10l5 -6l5 6" />
-          <path d="M21 10l-2 8a2 2.5 0 0 1 -2 2h-10a2 2.5 0 0 1 -2 -2l-2 -8z" />
-          <path d="M12 15m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-        </svg>
-      </div>
-      <div className="mobile-menu" onClick={handleMObileMenu}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="icon icon-tabler icon-tabler-align-left"
-          width="28"
-          height="28"
-          viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="#000000"
-          fill="none"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M4 6l16 0" />
-          <path d="M4 12l10 0" />
-          <path d="M4 18l14 0" />
-        </svg>
-      </div>
-      <i
-        className="fa fa-search mobile-search"
-        aria-hidden="true"
-        onClick={openSearch}
-      ></i>
       <CartItem cartSlide={"fs"} />
       <Outlet />
     </>

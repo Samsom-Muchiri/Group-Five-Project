@@ -1,11 +1,44 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import "../style sheets/LandingPage.css";
+import { Appcontext } from "../context/Contexts";
 
 function LandingPage() {
+  const vl = useContext(Appcontext);
+  function generateHString(number) {
+    return "⭐".repeat(number);
+  }
+  const itemObj = vl.items;
+  const item = itemObj.map((itm) => {
+    const {
+      product_name,
+      product_description,
+      unit_price,
+      product_full_image,
+      product_thumbnail,
+      ranking,
+      created,
+      updated,
+    } = itm;
+    return (
+      <div className="item">
+        <img src={product_full_image} alt={product_name} />
+        <div className="description">
+          <h4>{product_name}</h4>
+          <div className="desk">
+            <p>{product_description}</p>
+          </div>
+        </div>
+        <div className="access">
+          <p>{unit_price}</p>
+          <button>Add to cart</button>
+          <span>{generateHString(ranking)}</span>
+        </div>
+      </div>
+    );
+  });
   const slider = useRef();
   function handleScrollLeft() {
     const scrollLenth = slider.current.scrollWidth / 2;
-    console.log(scrollLenth);
     slider.current.scrollTo({
       left: scrollLenth,
       behavior: "smooth",
@@ -18,7 +51,6 @@ function LandingPage() {
       behavior: "smooth",
     });
   }
-  console.log("renderd");
   return (
     <div className="item-listing">
       <div className="container">
@@ -42,6 +74,7 @@ function LandingPage() {
             <div className="silder-item"></div>
           </div>
         </div>
+        <div className="item-container">{item}</div>
       </div>
     </div>
   );

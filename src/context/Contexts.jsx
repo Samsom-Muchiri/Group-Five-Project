@@ -6,8 +6,8 @@ const Appcontext = createContext();
 function Contexts({ children }) {
   const [cartState, setCartState] = useState({ transform: "translate(150%)" });
   const [isClosed, setIsClosed] = useState(true);
-  /*   const [itemsData, setItemsData] = useState([]);
-   */ const [userState, setUserState] = useState(null);
+  const [itemsData, setItemsData] = useState([]);
+  const [userState, setUserState] = useState(null);
   const [users, setUsers] = useState([
     {
       first_name: "string",
@@ -26,15 +26,27 @@ function Contexts({ children }) {
       updated: "2019-08-24T14:15:22Z",
     },
   ]);
-  const URL = "";
+  const PRODUCT_URL = " http://ecommerce.muersolutions.com/api/v1/products";
   const values = {
     cartPos: cartState,
     toggleCart: handleCartPos,
     cartStatus: isClosed,
     formFunction: handleForms,
     userIsLoged: userState,
+    items: itemsData,
   };
-
+  /* Fetch products */
+  useEffect(() => {
+    fetch(PRODUCT_URL)
+      .then((res) => {
+        if (!res.ok) {
+          alert("Failed");
+        }
+        return res.json();
+      })
+      .then((data) => setItemsData(data))
+      .catch((error) => console.log(error));
+  }, []);
   /* Check user state */
   function findUser(userEmail) {
     // Assuming you have an array of users
@@ -54,7 +66,6 @@ function Contexts({ children }) {
       }
     }, []);
   }
-  /* fetch data from api */
   function handleForms(data) {
     setIsSubmited((prev) => !prev);
     fetch(URL, {
