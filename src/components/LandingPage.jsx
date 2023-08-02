@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import "../style sheets/LandingPage.css";
+import "../style sheets/landingPage.css";
 
 function LandingPage() {
   const slider = useRef();
