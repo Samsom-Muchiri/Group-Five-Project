@@ -9,9 +9,10 @@ h1 {
 .detail-container {
   display: flex;
   justify-content: center;
+  gap: 20px;
   flex-wrap: wrap;
 }
-.container form {
+.input-form form {
   padding: 20px;
   min-height: 500px;
   font-family: Arial, Helvetica, sans-serif;
@@ -25,8 +26,12 @@ h1 {
   width: 100%;
   padding: 5px 5px;
 }
-.oreders {
-  min-width: 500px;
+.orders {
+  margin-top: 20px;
+  max-width: 400px;
+}
+.orders center {
+  font-weight: bold;
 }
 .progress-track {
   height: 7px;
@@ -60,16 +65,16 @@ h1 {
   font-weight: bold;
 }
 .next {
-  height: 200px;
   position: relative;
 }
 .next button {
   all: unset;
   background-color: #607c3c;
   position: absolute;
-  top: 20%;
-  right: 5%;
+  top: 10%;
+  right: -2%;
   padding: 10px 20px;
+  margin-top: 55px;
   color: white;
 }
 .inputs {

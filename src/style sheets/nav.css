@@ -118,7 +118,53 @@ nav form input {
 .mobile-search {
   display: none;
 }
+.footer {
+  height: 300px;
+  background-color: #abc32f;
+}
+.footer h1 {
+  text-align: start;
+  padding: 0px 10px;
+}
+.list-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+
+  max-width: 1380px;
+  margin: 0 auto;
+}
+.links {
+  padding-top: 20px;
+  width: 200px;
+}
+.links ul li {
+  list-style: none;
+  margin-top: 10px;
+}
+.link-list-3 ul li {
+  margin: 1px;
+}
+.copyright {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px 0px;
+  background-color: rgb(218, 206, 206);
+}
+.searchDiv {
+  position: absolute;
+  background-color: #b5e550;
+  width: 50%;
+  border-radius: 5px;
+  margin-top: 20px;
+  z-index: 11;
+}
 @media (max-width: 625px) {
+  .dsk-search {
+    display: none;
+  }
   nav {
     background-color: white;
     height: 70px;
@@ -135,15 +181,20 @@ nav form input {
     position: absolute;
     width: 100vw;
     z-index: 8;
-    margin-top: 15vh;
+    margin-top: 1vh;
     height: fit-content;
     pointer-events: none;
     display: none;
   }
+  .searchDiv {
+    margin-top: 45px;
+    width: 70%;
+  }
   nav form .fa-times {
-    color: white;
     padding: 10px 10px;
     font-size: 20px;
+    position: absolute;
+    right: 6%;
     pointer-events: all;
     cursor: pointer;
   }
@@ -155,8 +206,8 @@ nav form input {
     font-size: larger;
   }
   .search {
-    left: 13%;
-    margin-top: 50px;
+    left: 6%;
+    margin-top: 45px;
     pointer-events: all;
   }
   .cart-mobile {
