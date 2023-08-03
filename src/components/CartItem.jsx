@@ -69,7 +69,14 @@ function CartItem() {
             <div className="checkout">
               <h3>Check Out</h3>
               <div>
-                <Link to="checkout">
+                <Link
+                  to={itemObj.length === 0 ? "/" : "checkout"}
+                  style={
+                    itemObj.length === 0
+                      ? { cursor: "not-allowed" }
+                      : { pointerEvents: "all" }
+                  }
+                >
                   <button className="checkout-btn" onClick={closeCart}>
                     Checkout
                   </button>
