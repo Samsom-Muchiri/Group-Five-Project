@@ -1,4 +1,5 @@
 .item-listing {
+  all: unset;
   padding-top: 150px;
 }
 .silder-header {
@@ -23,7 +24,7 @@
 }
 .slider-button {
   position: absolute;
-  top: 45%;
+  top: 18%;
   width: 35px;
   height: 35px;
   border-radius: 50%;
@@ -31,6 +32,11 @@
   display: grid;
   place-items: center;
   z-index: 2;
+  cursor: pointer;
+}
+.slider-button:active {
+  background-color: #425c06;
+  color: white;
 }
 .btn-right {
   right: 3%;
@@ -95,7 +101,10 @@ p {
   }
   .mobile-header {
     display: block;
-    padding-top: 50px;
+    padding-top: 0px;
     color: #809c13;
+  }
+  .slider-button {
+    top: 8%;
   }
 }

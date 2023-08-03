@@ -14,6 +14,8 @@ import LandingPage from "./LandingPage";
 import ItemDescription from "./ItemDescription";
 import LoginPage from "./LoginPage";
 import Signin from "./Signin";
+import Checkout from "./Checkout";
+import Payment from "./Payment";
 
 function Main() {
   const vl = useContext(Appcontext);
@@ -24,6 +26,8 @@ function Main() {
         <Route path="desc" element={<ItemDescription />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="signin" element={<Signin />} />
+        <Route path="checkout" element={<Checkout />} />
+        <Route path="pay" element={<Payment />} />
       </Route>
     )
   );

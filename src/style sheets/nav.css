@@ -122,10 +122,14 @@ nav form input {
   nav {
     background-color: white;
     height: 70px;
-    margin-top: -25px;
+    margin-top: 0px;
+    padding-top: 20px;
   }
   .logo-header {
     display: none;
+  }
+  .active {
+    color: blue;
   }
   nav form {
     position: absolute;
@@ -168,14 +172,14 @@ nav form input {
   }
   .options ul {
     display: block;
+    padding-top: 70px;
     width: 50vw;
     height: 100vh;
     margin-top: 0%;
     background-color: #ececa3;
-    padding-top: 30px;
   }
   .options ul li {
-    margin: 20px;
+    margin: 35px;
     font-size: 20px;
   }
   .options .sub-menu ul {

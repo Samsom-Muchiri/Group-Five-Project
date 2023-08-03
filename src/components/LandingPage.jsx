@@ -17,8 +17,7 @@ function LandingPage() {
       price: unit_price,
       image: product_full_image,
     };
-    console.log(foundObject);
-    console.log(product_name);
+
     if (foundObject === undefined) {
       vl.addTocartF(ItemInfo);
     } else {

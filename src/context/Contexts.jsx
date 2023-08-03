@@ -6,7 +6,6 @@ const Appcontext = createContext();
 function Contexts({ children }) {
   const [cartState, setCartState] = useState({
     transform: "translate(150%)",
-    boxShadow: " 0px 0px 0px 1000px rgba(0, 0, 0, 0.669)",
   });
   const [isClosed, setIsClosed] = useState(true);
   const [itemsData, setItemsData] = useState([]);
