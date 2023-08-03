@@ -261,4 +261,15 @@ nav form input {
     top: 17px;
     left: 20%;
   }
+  .result-p {
+    background-color: #737368;
+  }
+}
+@media (max-width: 450px) {
+  .footer {
+    height: auto;
+  }
+  .list-container {
+    display: block;
+  }
 }

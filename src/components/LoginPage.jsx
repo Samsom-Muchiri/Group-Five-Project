@@ -22,8 +22,8 @@ function LoginPage() {
   }
   console.log(inputState);
   const login = (
-    <form onSubmit={handleSubmit}>
-      <h1>Login in to Green Space</h1>
+    <form onSubmit={handleSubmit} className="log-form">
+      <h1>Log in </h1>
       <div className="input-container">
         <input type="text" placeholder="email" onChange={handleInput} />
         <br />

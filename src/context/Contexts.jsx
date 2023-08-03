@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const Appcontext = createContext();
@@ -11,6 +11,7 @@ function Contexts({ children }) {
   const [itemsData, setItemsData] = useState([]);
   const [userState, setUserState] = useState(null);
   const [clckedItem, setClickedItem] = useState([]);
+  const [isSubmited, setIsSubmited] = useState(false);
   const [users, setUsers] = useState([
     {
       first_name: "string",
@@ -39,6 +40,8 @@ function Contexts({ children }) {
     items: itemsData,
     addedItems: clckedItem,
     addTocartF: handleAddtocart,
+    deleteItem: handleDelete,
+    logOut: logOutF,
   };
   /* handle add to cart data */
   function handleAddtocart(ItemInfo) {
@@ -75,9 +78,11 @@ function Contexts({ children }) {
       }
     }, []);
   }
+  const SIGN_URL = "http://ecommerce.muersolutions.com/api/v1/user/signup";
   function handleForms(data) {
     setIsSubmited((prev) => !prev);
-    fetch(URL, {
+
+    fetch(SIGN_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -102,6 +107,15 @@ function Contexts({ children }) {
     } else {
       setCartState({ transform: "translate(150%)" });
     }
+  }
+  function handleDelete(name) {
+    const newObj = clckedItem.filter((itm) => itm.name !== name);
+    setClickedItem(newObj);
+  }
+  function logOutF() {
+    localStorage.removeItem("user");
+    setUserState(null);
+    <Navigate path="/" />;
   }
   return <Appcontext.Provider value={values}>{children}</Appcontext.Provider>;
 }

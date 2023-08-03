@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "../style sheets/cart.css";
 import { Appcontext } from "../context/Contexts";
 import { Link } from "react-router-dom";
@@ -6,25 +6,42 @@ import { Link } from "react-router-dom";
 function CartItem() {
   const [cartCount, setCartCount] = useState(0);
   const [quantityCount, setQuantityCount] = useState(0);
+  const [cartData, setCartData] = useState([]);
   const vl = useContext(Appcontext);
-  const itemObj = vl.addedItems;
-  useState(() => {
+  const [itemObj, setItemObj] = useState([]);
+  console.log(itemObj);
+  useEffect(() => {
     const count = itemObj.length;
     setCartCount(count);
+    setCartData(itemObj);
   }, []);
+  useEffect(() => {
+    const obj = vl.addedItems.map((item) => ({ ...item, quantity: 1 }));
+    setItemObj(obj);
+  }, [vl.addedItems]);
   const q = vl.cartStatus;
   function closeCart() {
     vl.toggleCart(q);
   }
   const ccount = vl.addedItems.length;
-  function handleQuantity(e) {
-    const newVl = e.target.value;
-    setQuantityCount((prev) => prev + newVl);
-  }
 
-  const totalPrice = itemObj.reduce((acc, price) => acc + price.price, 0);
+  function handleQuantity(e, name) {
+    const newQuantity = parseInt(e.target.value, 10);
+    setItemObj((prevItems) =>
+      prevItems.map((item) =>
+        item.name === name ? { ...item, quantity: newQuantity } : item
+      )
+    );
+  }
+  function handleDelete(name) {
+    vl.deleteItem(name);
+  }
+  const totalPrice = itemObj.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
   const newItem = itemObj.map((itm, i) => {
-    const { name, price, image } = itm;
+    const { name, price, image, quantity } = itm;
     return (
       <div className="cartitem" key={i}>
         <div className="cart-item-container">
@@ -32,18 +49,29 @@ function CartItem() {
           <div className="item-name">
             <p>{name}</p>
           </div>
-          <i className="fa fa-trash" aria-hidden="true"></i>
+          <i
+            className="fa fa-trash"
+            aria-hidden="true"
+            onClick={() => handleDelete(name)}
+          ></i>
         </div>
         <div className="price-container">
-          <p>Price: Ksh{price}</p>
+          <p>
+            Price: <b>Ksh{price}</b>
+          </p>
           <span>
-            <input type="number" onChange={handleQuantity} />
+            Quantity
+            <input
+              type="number"
+              value={quantity}
+              onChange={(e) => handleQuantity(e, name)}
+            />
           </span>
         </div>
       </div>
     );
   });
-
+  console.log(vl.addedItems);
   const emptyMessage = (
     <div className="emptyMessage">
       <i className="fa fa-shopping-cart" aria-hidden="true"></i>

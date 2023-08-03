@@ -1,6 +1,7 @@
 import React, { useContext, useRef } from "react";
 import "../style sheets/landingPage.css";
 import { Appcontext } from "../context/Contexts";
+import { Link } from "react-router-dom";
 
 function LandingPage() {
   const vl = useContext(Appcontext);
@@ -41,7 +42,10 @@ function LandingPage() {
     } = itm;
     return (
       <div className="item">
-        <img src={product_full_image} alt={product_name} />
+        <Link to={product_name}>
+          <img src={product_full_image} alt={product_name} />
+        </Link>
+
         <div className="description">
           <h4>{product_name}</h4>
           <div className="desk">

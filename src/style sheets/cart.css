@@ -128,16 +128,23 @@
   height: 65vh;
 }
 .checkout {
-  height: 15vh;
+  height: 20vh;
   position: absolute;
-  bottom: 5%;
+  bottom: 0%;
   left: 0%;
   width: 100%;
+  background-color: #ececa3;
 }
 .checkout h3 {
   all: unset;
   font-size: 20px;
   text-align: center;
+}
+.cart-item center span {
+  font-weight: bold;
+}
+.price-container input {
+  margin-left: 4px;
 }
 .checkout-btn {
   all: unset;
