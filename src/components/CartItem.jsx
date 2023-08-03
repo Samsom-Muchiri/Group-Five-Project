@@ -1,6 +1,7 @@
 import React, { useContext, useRef, useState } from "react";
 import "../style sheets/cart.css";
 import { Appcontext } from "../context/Contexts";
+import { Link } from "react-router-dom";
 
 function CartItem() {
   const [cartCount, setCartCount] = useState(0);
@@ -15,16 +16,17 @@ function CartItem() {
   function closeCart() {
     vl.toggleCart(q);
   }
+  const ccount = vl.addedItems.length;
   function handleQuantity(e) {
     const newVl = e.target.value;
     setQuantityCount((prev) => prev + newVl);
   }
 
   const totalPrice = itemObj.reduce((acc, price) => acc + price.price, 0);
-  const newItem = itemObj.map((itm) => {
+  const newItem = itemObj.map((itm, i) => {
     const { name, price, image } = itm;
     return (
-      <div className="cartitem">
+      <div className="cartitem" key={i}>
         <div className="cart-item-container">
           <img src={image} alt={name} />
           <div className="item-name">
@@ -56,12 +58,24 @@ function CartItem() {
         <span>Total: Ksh{totalPrice}</span>
       </center>
       <div className="center">
-        <div className="close-cart" datacount={cartCount} onClick={closeCart}>
+        <div className="close-cart" datacount={ccount} onClick={closeCart}>
           <i className="fa fa-times" aria-hidden="true"></i>
         </div>
         <div className="scroller">
           <div className="cart-items-container">
-            <div className="div">{newItem}</div>
+            <div className="div">
+              {itemObj.length === 0 ? emptyMessage : newItem}
+            </div>
+            <div className="checkout">
+              <h3>Check Out</h3>
+              <div>
+                <Link to="checkout">
+                  <button className="checkout-btn" onClick={closeCart}>
+                    Checkout
+                  </button>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import "../style sheets/nav.css";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import CartItem from "./CartItem";
 import { Appcontext } from "../context/Contexts";
 
@@ -88,15 +88,10 @@ function Nav() {
           }
         >
           <ul>
-            <li>options</li>
             <li>
-              options<i className="fa fa-angle-down" aria-hidden="true"></i>
-              <div className="sub-menu">
-                <ul>
-                  <li>option</li>
-                </ul>
-              </div>
+              <NavLink to="/">home</NavLink>{" "}
             </li>
+
             <li>options</li>
             <li>options</li>
             <li>options</li>
