@@ -37,8 +37,8 @@ function Signin() {
     setPwdState(value);
   }
   const signIn = (
-    <form onSubmit={handleSubmit}>
-      <h1>Sign in to Green Space</h1>
+    <form onSubmit={handleSubmit} className="log-form">
+      <h1>Sign in </h1>
       <div className="input-container">
         <input
           type="text"

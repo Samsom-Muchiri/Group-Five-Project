@@ -1,6 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import "../style sheets/nav.css";
-import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
+import {
+  Link,
+  NavLink,
+  Outlet,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import CartItem from "./CartItem";
 import { Appcontext } from "../context/Contexts";
 
@@ -11,6 +17,7 @@ function Nav() {
   const vl = useContext(Appcontext);
   const [searchItems, setSearchItems] = useState([]);
   const itemCount = vl.addedItems.length;
+  const idss = useParams();
   const navigate = useNavigate();
   useEffect(() => {
     navigate("/");
@@ -34,7 +41,9 @@ function Nav() {
   });
 
   const searchedResultsJSX = searchedResults.map((obj, index) => (
-    <p key={index}>{obj.product_name}</p>
+    <Link to={obj.product_name} className="result-p">
+      <p key={index}>{obj.product_name}</p>
+    </Link>
   ));
 
   function handleMObileMenu(e) {
@@ -63,7 +72,9 @@ function Nav() {
   function closeSearch() {
     setSearchIsOpen(false);
   }
-
+  function handlelogOut() {
+    vl.logOut();
+  }
   return (
     <>
       <nav>
@@ -77,8 +88,13 @@ function Nav() {
                 <Link to="login">login</Link> / <Link to="signin">sign in</Link>
               </>
             ) : (
-              vl.userIsLoged // Display user's name or other content when logged in
+              vl.userIsLoged
+
+              // Display user's name or other content when logged in
             )}
+            <p onClick={handlelogOut} style={{ cursor: "pointer" }}>
+              {vl.userIsLoged !== null ? "log out" : ""}
+            </p>
           </div>
         </div>
         <form style={searchIsOpen ? { display: "flex" } : { display: "none" }}>
@@ -136,10 +152,6 @@ function Nav() {
               <NavLink to="/">home</NavLink>{" "}
             </li>
 
-            <li>options</li>
-            <li>options</li>
-            <li>options</li>
-            <li>options</li>
             <li>
               {" "}
               <div className="log-btn mobile-log">
