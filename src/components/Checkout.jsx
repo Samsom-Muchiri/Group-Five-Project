@@ -1,8 +1,12 @@
 import React, { useContext } from "react";
 import "../style sheets/finishpay.css";
 import { Outlet } from "react-router-dom";
+import { Appcontext } from "../context/Contexts";
 
 function Checkout() {
+  const vl = useContext(Appcontext);
+  console.log(vl.detailS);
+  console.log(vl.detailIsFill);
   return (
     <div className="container">
       <h1>Thank You for shoping with us</h1>
@@ -16,7 +20,10 @@ function Checkout() {
           </div>
           <div className="fill-detais prs">
             <span>Fill in your details</span>
-            <i className={"fa fa-check"} aria-hidden="true"></i>
+            <i
+              className={vl.detailS ? "fa fa-check" : ""}
+              aria-hidden="true"
+            ></i>
           </div>
           <div className="make-payment prs">
             <span>Make payment</span>

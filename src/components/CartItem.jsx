@@ -9,7 +9,6 @@ function CartItem() {
   const [cartData, setCartData] = useState([]);
   const vl = useContext(Appcontext);
   const [itemObj, setItemObj] = useState([]);
-  console.log(itemObj);
   useEffect(() => {
     const count = itemObj.length;
     setCartCount(count);
@@ -71,7 +70,6 @@ function CartItem() {
       </div>
     );
   });
-  console.log(vl.addedItems);
   const emptyMessage = (
     <div className="emptyMessage">
       <i className="fa fa-shopping-cart" aria-hidden="true"></i>

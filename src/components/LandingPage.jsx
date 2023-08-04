@@ -9,7 +9,6 @@ function LandingPage() {
     return "⭐".repeat(number);
   }
   const itemsData = vl.addedItems;
-  console.log(itemsData);
   function handleAddToCart(product_name, unit_price, product_full_image, e) {
     const foundObject = itemsData.find((item) => item.name === product_name);
 
@@ -97,12 +96,30 @@ function LandingPage() {
             <i class="fa fa-angle-right" aria-hidden="true"></i>
           </div>
           <div className="slider-item-wrapper">
-            <div className="silder-item"></div>
-            <div className="silder-item"></div>
-            <div className="silder-item"></div>
-            <div className="silder-item"></div>
-            <div className="silder-item"></div>
-            <div className="silder-item"></div>
+            <div className="silder-item">
+              <img
+                src="	https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg"
+                alt=""
+              />
+            </div>
+            <div className="silder-item">
+              <img
+                src=" https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg"
+                alt=""
+              />
+            </div>
+            <div className="silder-item">
+              <img src="https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg" />
+            </div>
+            <div className="silder-item">
+              <img src="https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg" />
+            </div>
+            <div className="silder-item">
+              <img src="https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg" />
+            </div>
+            <div className="silder-item">
+              <img src="	https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg" />
+            </div>
           </div>
         </div>
         <div className="item-container">{item}</div>
