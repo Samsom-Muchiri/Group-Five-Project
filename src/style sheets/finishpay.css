@@ -20,12 +20,17 @@
   margin-right: 10px;
 }
 
-.paypal form input {
+.paypalForm input {
+  all: unset;
+  border: solid 1px gray;
+  margin: 5px 0px;
+  padding-left: 10px;
   width: 93%;
 }
 .paypal button {
   all: unset;
   width: 100%;
+  margin-top: 5px;
   text-align: center;
   border-radius: 5px;
   background-color: #b5e550;
@@ -33,10 +38,14 @@
 }
 .center {
   display: flex;
+  width: 95%;
   justify-content: space-around;
 }
+.center input {
+  width: 45%;
+}
 .mpesa {
-  margin-top: 30px;
+  margin: 30px 0px;
 }
 .mpesa img {
   width: 300px;

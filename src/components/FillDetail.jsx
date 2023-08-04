@@ -8,13 +8,14 @@ function FillDetail() {
   const vl = useContext(Appcontext);
   const itemObj = vl.addedItems;
 
-  const [isSubmited, setIsSubmited] = useState(false);
   function handleSubmit(e) {
     e.preventDefault();
-    setIsSubmited(true);
+
     localStorage.setItem("Detail_Data", JSON.stringify(formValues));
   }
-  const oblLength = Object.keys(formValues).length;
+  /* detailS: detailForm, */
+  /*   console.log(vl.detailS);
+   */ const oblLength = Object.keys(formValues).length;
   function handleInput(e) {
     const attr = e.target.getAttribute("placeholder");
     const value = e.target.value;
@@ -27,7 +28,6 @@ function FillDetail() {
   }
 
   const totalPrice = itemObj.reduce((acc, price) => acc + price.price, 0);
-  console.log(oblLength);
   const newItem = itemObj.map((itm, i) => {
     const { name, price, image } = itm;
     return (
@@ -125,6 +125,7 @@ function FillDetail() {
                       ? { cursor: "not-allowed" }
                       : { cursor: "pointer" }
                   }
+                  onClick={() => vl.detailIsFill()}
                 >
                   Next Step
                 </button>

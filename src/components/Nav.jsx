@@ -29,7 +29,6 @@ function Nav() {
   useEffect(() => {
     setSearchItems(vl.items);
   }, [vl.items]);
-  console.log(vl.items);
   const q = vl.cartStatus;
   function openCart() {
     vl.toggleCart(q);
@@ -41,14 +40,13 @@ function Nav() {
   });
 
   const searchedResultsJSX = searchedResults.map((obj, index) => (
-    <Link to={obj.product_name} className="result-p">
+    <Link to={obj.product_name} key={index} className="result-p">
       <p key={index}>{obj.product_name}</p>
     </Link>
   ));
 
   function handleMObileMenu(e) {
     e.stopPropagation();
-    console.log("cliked");
     setMenuIsOpen(false);
   }
   function handleCloseMenu(e) {
@@ -164,6 +162,7 @@ function Nav() {
                 ) : (
                   vl.userIsLoged // Display user's name or other content when logged in
                 )}
+                <li>{vl.userIsLoged !== null ? "log out" : ""}</li>
               </div>
             </li>
           </ul>
