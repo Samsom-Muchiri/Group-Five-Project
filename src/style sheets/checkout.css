@@ -27,7 +27,7 @@ h1 {
   padding: 5px 5px;
 }
 .orders {
-  margin-top: 20px;
+  margin: 20px 0px;
   max-width: 400px;
 }
 .orders center {
@@ -81,4 +81,11 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: start;
+}
+.scroller-2 {
+  height: 50vh;
+  overflow-y: scroll;
+}
+.scroller-2::-webkit-scrollbar {
+  width: 0%;
 }

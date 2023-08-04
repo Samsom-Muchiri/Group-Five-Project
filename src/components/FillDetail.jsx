@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../style sheets/checkout.css";
 import { Appcontext } from "../context/Contexts";
 import { Link } from "react-router-dom";
@@ -6,12 +6,44 @@ import { Link } from "react-router-dom";
 function FillDetail() {
   const [formValues, setFormValues] = useState([]);
   const vl = useContext(Appcontext);
-  const itemObj = vl.addedItems;
+  const [itemObj, setItemObj] = useState([]);
+  const [cartCount, setCartCount] = useState(0);
+  const [cartData, setCartData] = useState([]);
+
+  useEffect(() => {
+    const count = itemObj.length;
+    setCartCount(count);
+    setCartData(itemObj);
+  }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
 
     localStorage.setItem("Detail_Data", JSON.stringify(formValues));
+  }
+  useEffect(() => {
+    const count = itemObj.length;
+    setCartCount(count);
+    setCartData(itemObj);
+  }, []);
+  useEffect(() => {
+    const obj = vl.addedItems.map((item) => ({ ...item, quantity: 1 }));
+    setItemObj(obj);
+  }, [vl.addedItems]);
+  function handleQuantity(e, name) {
+    const newQuantity = parseInt(e.target.value, 10);
+    setItemObj((prevItems) =>
+      prevItems.map((item) =>
+        item.name === name ? { ...item, quantity: newQuantity } : item
+      )
+    );
+  }
+  const totalPrice = itemObj.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
+  function handleDelete(name) {
+    vl.deleteItem(name);
   }
   /* detailS: detailForm, */
   /*   console.log(vl.detailS);
@@ -27,9 +59,8 @@ function FillDetail() {
     }));
   }
 
-  const totalPrice = itemObj.reduce((acc, price) => acc + price.price, 0);
   const newItem = itemObj.map((itm, i) => {
-    const { name, price, image } = itm;
+    const { name, price, image, quantity } = itm;
     return (
       <div className="cartitem" key={i}>
         <div className="cart-item-container">
@@ -37,12 +68,20 @@ function FillDetail() {
           <div className="item-name">
             <p>{name}</p>
           </div>
-          <i className="fa fa-trash" aria-hidden="true"></i>
+          <i
+            className="fa fa-trash"
+            aria-hidden="true"
+            onClick={() => handleDelete(name)}
+          ></i>
         </div>
         <div className="price-container">
           <p>Price: Ksh{price}</p>
           <span>
-            <input type="number" />
+            <input
+              type="number"
+              onChange={(e) => handleQuantity(e, name)}
+              value={quantity}
+            />
           </span>
         </div>
       </div>
@@ -139,7 +178,7 @@ function FillDetail() {
             <span>Total: Ksh{totalPrice}</span>
           </center>
           <div className="center">
-            <div className="scroller">
+            <div className="scroller-2">
               <div className="cart-items-container">
                 <div className="div">{newItem}</div>
               </div>
