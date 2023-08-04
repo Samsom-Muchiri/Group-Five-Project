@@ -11,6 +11,26 @@ function ItemDetail() {
   function generateHString(number) {
     return "⭐".repeat(number);
   }
+  const itemsData = vl.addedItems;
+  function handleAddToCart(product_name, unit_price, product_full_image, e) {
+    const foundObject = itemsData.find((item) => item.name === product_name);
+
+    const ItemInfo = {
+      name: product_name,
+      price: unit_price,
+      image: product_full_image,
+    };
+
+    if (foundObject === undefined) {
+      vl.addTocartF(ItemInfo);
+    } else {
+      if (foundObject.product_name === product_name) {
+        console.log(foundObject.product_name);
+        /*  vl.addTocartF(ItemInfo); */
+      }
+    }
+  }
+  console.log(vl.items);
   const {
     product_name,
     product_description,
@@ -21,7 +41,6 @@ function ItemDetail() {
     created,
     updated,
   } = item;
-  console.log(created);
   return (
     <div className="div4">
       <div className="item-container1">
@@ -33,7 +52,17 @@ function ItemDetail() {
           <p>{created}</p>
           <p>{updated}</p>
           <p>{unit_price}</p>
-          <p>{generateHString(ranking)}</p>
+          <div className="rank-d">
+            <p>{generateHString(ranking)} </p>
+            <button
+              className="cart-Btn"
+              onClick={() =>
+                handleAddToCart(product_name, unit_price, product_full_image)
+              }
+            >
+              Add To Cart
+            </button>
+          </div>
         </div>
       </div>
     </div>
