@@ -28,6 +28,20 @@
   width: 60%;
   min-width: 300px;
 }
+.rank-d {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cart-Btn {
+  all: unset;
+  height: fit-content;
+  background-color: greenyellow;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 @media (max-width: 480px) {
   .item-container1 {
     width: 95%;
