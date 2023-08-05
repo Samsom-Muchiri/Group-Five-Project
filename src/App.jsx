@@ -5,8 +5,6 @@ import Main from "./components/Main";
 import { Contexts } from "./context/Contexts";
 
 function App() {
-  const [count, setCount] = useState(1)
-
   return (
     <>
       <Contexts>

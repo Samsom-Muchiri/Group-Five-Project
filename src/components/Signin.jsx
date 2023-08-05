@@ -37,7 +37,6 @@ function Signin() {
         } else {
           localStorage.setItem("user", JSON.stringify(signData));
 
-          alert("Sign in successful");
           navigateToHome("/");
         }
         return res.json();
