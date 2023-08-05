@@ -1,6 +1,5 @@
 import React from "react";
-import "../style sheets/Loader.css";
-
+import "../style sheets/loaderAnimation.css";
 function Loader() {
   return (
     <div className="loader-container">
