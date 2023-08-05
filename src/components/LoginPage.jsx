@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "../style sheets/loging.css";
+import Loader from "./Loader";
 
 function LoginPage() {
   const [formData, setFormData] = useState({});
   const [inputState, setInputStata] = useState("");
   const [pwdState, setPwdState] = useState("");
+  const [loading, setLoading] = useState(false);
   const LOG_URL = "http://ecommerce.muersolutions.com/api/v1/user/login";
   function handleSubmit(e) {
     e.preventDefault();
@@ -12,11 +14,11 @@ function LoginPage() {
       username: inputState,
       password: pwdState,
     };
-
+    console.log("loading");
+    setLoading(true);
     loginUser(LogData);
   }
   async function loginUser(LogData) {
-    console.log(JSON.stringify(LogData));
     try {
       const response = await fetch(LOG_URL, {
         method: "POST",
@@ -28,11 +30,12 @@ function LoginPage() {
 
       if (!response.ok) {
         alert("Failed to log in! Try again later");
+        setLoading(false);
         throw new Error("Network response was not ok");
       } else if (response === 422) {
-        alert(
+        /* alert(
           "Fetal you may have enterd invalid data! Try again with valid data"
-        );
+        ); */
       } else if (response === 503) {
         alert("Sorry login service unavailable");
       }
@@ -72,7 +75,7 @@ function LoginPage() {
       </center>
     </form>
   );
-  return <div className="form-wrapper">{login}</div>;
+  return <div className="form-wrapper">{loading ? <Loader /> : login}</div>;
 }
 
 export default LoginPage;
