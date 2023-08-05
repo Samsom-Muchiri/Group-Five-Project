@@ -29,7 +29,6 @@ function LandingPage() {
     }
   }
   const itemObj = vl.items;
-  console.log(itemObj.length > 7);
   const item = itemObj.map((itm) => {
     const {
       product_name,
