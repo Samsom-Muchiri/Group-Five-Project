@@ -1,6 +1,4 @@
 import React, { createContext, useEffect, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 const Appcontext = createContext();
 
@@ -39,22 +37,20 @@ function Contexts({ children }) {
     cartPos: cartState,
     toggleCart: handleCartPos,
     cartStatus: isClosed,
-    formFunction: handleForms,
     userIsLoged: userState,
     items: itemsData,
     addedItems: clckedItem,
     addTocartF: handleAddtocart,
     deleteItem: handleDelete,
-    logOut: logOutF,
+
     detailS: detailForm,
     detailIsFill: fn,
+    setUser: setUserName,
   };
-
   /* handle add to cart data */
   function handleAddtocart(ItemInfo) {
     setClickedItem((prev) => [...prev, ItemInfo]);
   }
-
   /* Fetch products */
   useEffect(() => {
     fetch(PRODUCT_URL)
@@ -78,38 +74,17 @@ function Contexts({ children }) {
   if (localStorage.getItem("user") !== null) {
     const SU = localStorage.getItem("user");
     const storedUser = JSON.parse(SU);
-    const userEmail = storedUser.email; // Replace "s" with the email you want to search for
+    const userEmail = storedUser.email;
     const foundUser = findUser(userEmail);
-
     useEffect(() => {
       if (foundUser !== []) {
         setUserState(storedUser.first_name);
       }
     }, []);
   }
-
-  const SIGN_URL = "http://ecommerce.muersolutions.com/api/v1/user/signup";
-
-  function handleForms(data) {
-    setIsSubmited((prev) => !prev);
-
-    fetch(SIGN_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => {
-        if (!res.ok) {
-          alert("Failed");
-        }
-        return res.json();
-      })
-      .then((data) => data)
-      .catch((error) => console.log(error));
+  function setUserName(userName) {
+    setUserState(userName);
   }
-
   /* Check location */
   function handleCartPos(q) {
     setIsClosed((prev) => !prev);
@@ -125,14 +100,7 @@ function Contexts({ children }) {
     setClickedItem(newObj);
   }
 
-  function logOutF() {
-    localStorage.removeItem("user");
-    setUserState(null);
-    <Navigate path="/" />;
-  }
-
   function fn() {
-    console.log("submited");
     setDetailForm(true);
   }
 

@@ -1,12 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import "../style sheets/nav.css";
-import {
-  Link,
-  NavLink,
-  Outlet,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import CartItem from "./CartItem";
 import { Appcontext } from "../context/Contexts";
 
@@ -14,13 +8,16 @@ function Nav() {
   const [menuIsOpen, setMenuIsOpen] = useState(true);
   const [searchIsOpen, setSearchIsOpen] = useState(false);
   const [searchState, setSearchState] = useState("");
+  const [userIsUpdated, setUserIsUpdated] = useState(null);
+  const [userHasLogedOut, setUserHasLogedOut] = useState(null);
   const vl = useContext(Appcontext);
   const [searchItems, setSearchItems] = useState([]);
   const itemCount = vl.addedItems.length;
-  const idss = useParams();
-  const navigate = useNavigate();
+
   useEffect(() => {
-    navigate("/");
+    if (vl.userIsLoged !== null) {
+      setUserHasLogedOut(vl.userIsLoged);
+    }
   }, [vl.userIsLoged]);
   function handleSearch(e) {
     const value = e.target.value;
@@ -38,7 +35,6 @@ function Nav() {
     const name = obj.product_name;
     return name.toLowerCase().includes(searchState.toLowerCase());
   });
-
   const searchedResultsJSX = searchedResults.map((obj, index) => (
     <Link to={obj.product_name} key={index} className="result-p">
       <p key={index}>{obj.product_name}</p>
@@ -71,7 +67,8 @@ function Nav() {
     setSearchIsOpen(false);
   }
   function handlelogOut() {
-    vl.logOut();
+    localStorage.removeItem("user");
+    setUserHasLogedOut(null);
   }
   return (
     <>
@@ -81,17 +78,17 @@ function Nav() {
           <p>Get the best from Green Space</p>
           <div className="log-btn">
             <i className="fa fa-user" aria-hidden="true"></i>
-            {vl.userIsLoged === null ? (
+            {userHasLogedOut === null ? (
               <>
                 <Link to="login">login</Link> / <Link to="signin">sign in</Link>
               </>
             ) : (
-              vl.userIsLoged
+              userHasLogedOut
 
               // Display user's name or other content when logged in
             )}
             <p onClick={handlelogOut} style={{ cursor: "pointer" }}>
-              {vl.userIsLoged !== null ? "log out" : ""}
+              {userHasLogedOut !== null ? "log out" : ""}
             </p>
           </div>
         </div>
@@ -162,7 +159,7 @@ function Nav() {
                 ) : (
                   vl.userIsLoged // Display user's name or other content when logged in
                 )}
-                <li>{vl.userIsLoged !== null ? "log out" : ""}</li>
+                {vl.userIsLoged !== null ? "log out" : ""}
               </div>
             </li>
           </ul>
@@ -341,7 +338,7 @@ function Nav() {
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                     <path
                       d="M18 2a1 1 0 0 1 .993 .883l.007 .117v4a1 1 0 0 1 -.883 .993l-.117 .007h-3v1h3a1 1 0 0 1 .991 1.131l-.02 .112l-1 4a1 1 0 0 1 -.858 .75l-.113 .007h-2v6a1 1 0 0 1 -.883 .993l-.117 .007h-4a1 1 0 0 1 -.993 -.883l-.007 -.117v-6h-2a1 1 0 0 1 -.993 -.883l-.007 -.117v-4a1 1 0 0 1 .883 -.993l.117 -.007h2v-1a6 6 0 0 1 5.775 -5.996l.225 -.004h3z"
-                      stroke-width="0"
+                      strokeWidth="0"
                       fill="currentColor"
                     />
                   </svg>
@@ -358,7 +355,7 @@ function Nav() {
                     strokeWidth="1.5"
                     stroke="#000000"
                     fill="none"
-                    stroke-linecap="round"
+                    strokeLinecap="round"
                     strokeLinejoin="round"
                   >
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -377,11 +374,11 @@ function Nav() {
           width="28"
           height="28"
           viewBox="0 0 24 24"
-          stroke-width="1.5"
+          strokeWidth="1.5"
           stroke="#000000"
           fill="none"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         >
           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
           <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
