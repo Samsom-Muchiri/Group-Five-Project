@@ -9,13 +9,14 @@ function LoginPage() {
   function handleSubmit(e) {
     e.preventDefault();
     const LogData = {
-      email_address: inputState,
+      username: inputState,
       password: pwdState,
     };
-    console.log(LogData);
+
     loginUser(LogData);
   }
   async function loginUser(LogData) {
+    console.log(JSON.stringify(LogData));
     try {
       const response = await fetch(LOG_URL, {
         method: "POST",
@@ -28,16 +29,27 @@ function LoginPage() {
       if (!response.ok) {
         alert("Failed to log in! Try again later");
         throw new Error("Network response was not ok");
+      } else if (response === 422) {
+        alert(
+          "Fetal you may have enterd invalid data! Try again with valid data"
+        );
+      } else if (response === 503) {
+        alert("Sorry login service unavailable");
       }
 
       const data = await response.json();
       console.log(data);
+      upDateUserInContext(data);
       return data;
     } catch (error) {
       alert("Failed to log in! Try again later");
       console.error("Error fetching data:", error);
       throw error;
     }
+  }
+  function upDateUserInContext(data) {
+    const name = data.first_name;
+    vl.setUser(name);
   }
   function handleInput(e) {
     const value = e.target.value;

@@ -158,7 +158,6 @@ function FillDetail() {
             <div className="next">
               <label htmlFor="submit-form">
                 <button
-                  id="submit-form"
                   style={
                     oblLength < 8
                       ? { cursor: "not-allowed" }

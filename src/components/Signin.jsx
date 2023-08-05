@@ -2,13 +2,16 @@ import React, { useContext, useState } from "react";
 
 import "../style sheets/loging.css";
 import { Appcontext } from "../context/Contexts";
+import { useNavigate } from "react-router-dom";
 
 function Signin() {
   const [FirstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [pwdState, setPwdState] = useState("");
   const [emailState, setEmailState] = useState("");
+  const SIGN_URL = "http://ecommerce.muersolutions.com/api/v1/user/signup";
   const vl = useContext(Appcontext);
+  const navigateToHome = useNavigate();
   function handleSubmit(e) {
     e.preventDefault();
     const signData = {
@@ -17,8 +20,33 @@ function Signin() {
       email: emailState,
       password: pwdState,
     };
-    localStorage.setItem("user", JSON.stringify(signData));
-    vl.formFunction(signData);
+
+    fetch(SIGN_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(signData),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          alert("Failed");
+        } else {
+          localStorage.setItem("user", JSON.stringify(signData));
+
+          alert("Sign in successful");
+          navigateToHome("/");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        upDateUserInContext(data);
+      })
+      .catch((error) => console.log(error));
+  }
+  function upDateUserInContext(data) {
+    const name = data.first_name;
+    vl.setUser(name);
   }
   function handleFirstName(e) {
     const value = e.target.value;

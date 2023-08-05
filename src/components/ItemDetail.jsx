@@ -30,7 +30,6 @@ function ItemDetail() {
       }
     }
   }
-  console.log(vl.items);
   const {
     product_name,
     product_description,

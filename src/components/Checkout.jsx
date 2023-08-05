@@ -5,8 +5,7 @@ import { Appcontext } from "../context/Contexts";
 
 function Checkout() {
   const vl = useContext(Appcontext);
-  console.log(vl.detailS);
-  console.log(vl.detailIsFill);
+
   return (
     <div className="container">
       <h1>Thank You for shoping with us</h1>
