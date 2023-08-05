@@ -2,6 +2,7 @@ import React, { useContext, useRef } from "react";
 import "../style sheets/landingPage.css";
 import { Appcontext } from "../context/Contexts";
 import { Link } from "react-router-dom";
+import Loader from "./Loader";
 
 function LandingPage() {
   const vl = useContext(Appcontext);
@@ -34,13 +35,10 @@ function LandingPage() {
       product_description,
       unit_price,
       product_full_image,
-      product_thumbnail,
       ranking,
-      created,
-      updated,
     } = itm;
     return (
-      <div className="item">
+      <div className="item" key={product_name}>
         <Link to={product_name}>
           <img src={product_full_image} alt={product_name} />
         </Link>
@@ -122,7 +120,9 @@ function LandingPage() {
             </div>
           </div>
         </div>
-        <div className="item-container">{item}</div>
+        <div className="item-container">
+          {itemObj.length !== 0 ? item : <Loader />}
+        </div>
       </div>
     </div>
   );

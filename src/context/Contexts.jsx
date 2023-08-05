@@ -70,18 +70,17 @@ function Contexts({ children }) {
     const foundUser = users.filter((usr) => usr.email === userEmail);
     return foundUser;
   }
-
   if (localStorage.getItem("user") !== null) {
     const SU = localStorage.getItem("user");
     const storedUser = JSON.parse(SU);
     const userEmail = storedUser.email;
     const foundUser = findUser(userEmail);
-    useEffect(() => {
-      if (foundUser !== []) {
-        setUserState(storedUser.first_name);
-      }
-    }, []);
+
+    if (foundUser.length !== 0) {
+      setUserState(storedUser.first_name);
+    }
   }
+
   function setUserName(userName) {
     setUserState(userName);
   }
