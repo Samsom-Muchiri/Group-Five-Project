@@ -3,12 +3,14 @@ import React, { useContext, useState } from "react";
 import "../style sheets/loging.css";
 import { Appcontext } from "../context/Contexts";
 import { useNavigate } from "react-router-dom";
+import Loader from "./Loader";
 
 function Signin() {
   const [FirstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [pwdState, setPwdState] = useState("");
   const [emailState, setEmailState] = useState("");
+  const [loading, setLoading] = useState(false);
   const SIGN_URL = "http://ecommerce.muersolutions.com/api/v1/user/signup";
   const vl = useContext(Appcontext);
   const navigateToHome = useNavigate();
@@ -20,7 +22,7 @@ function Signin() {
       email: emailState,
       password: pwdState,
     };
-
+    setLoading(true);
     fetch(SIGN_URL, {
       method: "POST",
       headers: {
@@ -30,6 +32,7 @@ function Signin() {
     })
       .then((res) => {
         if (!res.ok) {
+          setLoading(false);
           alert("Failed");
         } else {
           localStorage.setItem("user", JSON.stringify(signData));
@@ -85,6 +88,6 @@ function Signin() {
       </center>
     </form>
   );
-  return <div className="form-wrapper">{signIn}</div>;
+  return <div className="form-wrapper">{loading ? <Loader /> : signIn}</div>;
 }
 export default Signin;
