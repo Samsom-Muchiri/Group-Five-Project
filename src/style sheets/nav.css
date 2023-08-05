@@ -1,100 +1,275 @@
-nav{
-    width: 100vw;
+nav {
+  width: 100vw;
+  margin-top: 0px;
+  position: fixed;
+  z-index: 7;
+  background-color: white;
+}
+.log-btn a {
+  all: unset;
+  margin: 0px 5px;
+  cursor: pointer;
+}
+.log-btn a:active {
+  color: #607c3c;
+}
+.logo-header {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #abc32f;
+  padding: 0%;
+  margin: 0px 5vw;
+}
+.logo-header h1 {
+  font-size: 30px;
+}
+nav form {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+nav form button {
+  display: none;
+}
+.search {
+  position: absolute;
+  top: -90%;
+  left: 26%;
+  cursor: pointer;
+}
+nav form input {
+  width: 50vw;
+  padding: 7px 40px;
+  border-radius: 10px;
+  border: solid 1px;
+  margin-top: -20px;
+  color: green;
+  outline: #abc32f;
+}
+.options ul {
+  background-color: #abc32f;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+.options ul li {
+  list-style: none;
+  margin: 0px 20px;
+  cursor: pointer;
+}
+.options ul li:hover .sub-menu ul {
+  display: block;
+}
+.sub-menu ul {
+  width: 100vw;
+  position: absolute;
+  left: 0%;
+  height: 200px;
+  background-color: #ececa3;
+  display: none;
+}
+.sub-menu ul li {
+  width: 90%;
+}
+.cart-icon {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #607c3c;
+  top: 65%;
+  right: 5%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  z-index: 7;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.292);
+}
+.cart-icon:hover {
+  background-color: #abc32f;
+}
+.cart-icon:active {
+  background-color: #ececa3;
+}
+.cart-icon::after {
+  content: attr(datacount);
+  display: grid;
+  place-items: center;
+  width: 13px;
+  height: 13px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  font-size: small;
+}
+.mobile-log {
+  display: none;
+}
+.cart-desck {
+  display: none;
+}
+.mobile-menu {
+  display: none;
+}
+.mobile-search {
+  display: none;
+}
+.footer {
+  height: 300px;
+  background-color: #abc32f;
+}
+.footer h1 {
+  text-align: start;
+  padding: 0px 10px;
+}
+.list-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+
+  max-width: 1380px;
+  margin: 0 auto;
+}
+.links {
+  padding-top: 20px;
+  width: 200px;
+}
+.links ul li {
+  list-style: none;
+  margin-top: 10px;
+}
+.link-list-3 ul li {
+  margin: 1px;
+}
+.copyright {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px 0px;
+  background-color: rgb(218, 206, 206);
+}
+.searchDiv {
+  position: absolute;
+  background-color: #b5e550;
+  width: 50%;
+  border-radius: 5px;
+  margin-top: 20px;
+  z-index: 11;
+}
+@media (max-width: 625px) {
+  .dsk-search {
+    display: none;
+  }
+  nav {
+    background-color: white;
+    height: 70px;
     margin-top: 0px;
-    position: fixed;
-    z-index: 7;
-    background-color: white;
-}
-.logo-header{
-    width: 90%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #abc32f;
-    padding: 0%;
-    margin: 0px 5vw;
-}
-.logo-header h1{
-    font-size: 30px;
-}
-nav form{
-    display: flex;
-    justify-content: center;
-    position: relative;
-}
-nav form button{
+    padding-top: 20px;
+  }
+  .logo-header {
     display: none;
-}
-.search{
+  }
+  .active {
+    color: blue;
+  }
+  nav form {
     position: absolute;
-    top: -90%;
-    left: 27%;
-    cursor: pointer;
-}
-nav form input{
-    width: 50vw;
-    padding: 7px 40px;
-    border-radius: 10px;
-    border: solid 1px;
-    margin-top: -20px;
-    color: green;
-    outline: #abc32f;
-}
-.options ul{
-    background-color: #abc32f;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-}
-.options ul li{
-    list-style: none;
-    margin: 0px 20px;
-    cursor: pointer;
-}
-.options ul li:hover .sub-menu ul{
-    display: block;
-}
-.sub-menu ul{
     width: 100vw;
-    position: absolute;
-    left: 0%;
-    height: 200px;
-    background-color:#ececa3;
-    z-index: 5px;
+    z-index: 8;
+    margin-top: 1vh;
+    height: fit-content;
+    pointer-events: none;
     display: none;
-}
-.sub-menu ul li{
-    width: 90%;
-}
-.cart-icon{
+  }
+  .searchDiv {
+    margin-top: 45px;
+    width: 70%;
+  }
+  nav form .fa-times {
+    padding: 10px 10px;
+    font-size: 20px;
     position: absolute;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #607c3c;
-    top: 73%;
-    right: 5%;
-    display: grid;
-    place-items: center;
+    right: 6%;
+    pointer-events: all;
     cursor: pointer;
-    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.292);
-}
-.cart-icon:hover{
-    background-color: #abc32f;
-}
-.cart-icon:active{
+  }
+  nav form input {
+    width: 75%;
+    margin-top: 0%;
+    pointer-events: all;
+    padding-left: 40px;
+    font-size: larger;
+  }
+  .search {
+    left: 6%;
+    margin-top: 45px;
+    pointer-events: all;
+  }
+  .cart-mobile {
+    top: 20%;
+    right: 5%;
+  }
+  .options {
+    width: fit-content;
+    margin-top: -40px;
+    transform: translate(-100%);
+    z-index: 5;
+    transition: 0.3s ease-out;
+  }
+  .options ul {
+    display: block;
+    padding-top: 70px;
+    width: 50vw;
+    height: 100vh;
+    margin-top: 0%;
     background-color: #ececa3;
-}
-.cart-icon::after{
-    content: attr(datacount);
+  }
+  .options ul li {
+    margin: 35px;
+    font-size: 20px;
+  }
+  .options .sub-menu ul {
+    height: fit-content;
+    background-color: transparent;
+    padding: 0%;
+    position: static;
+  }
+  .mobile-log {
+    display: block;
+    color: #abc32f;
+  }
+  .mobile-menu {
     display: grid;
     place-items: center;
-    width: 13px;
-    height: 13px;
-    background-color: white;
-    border-radius: 50%;
     position: absolute;
-    top: 10%;
-    right: 10%;
-    font-size: small;
+    top: 5%;
+    left: 5%;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+  }
+  .mobile-search {
+    display: block;
+    position: absolute;
+    top: 17px;
+    left: 20%;
+  }
+  .result-p {
+    background-color: #737368;
+  }
+}
+@media (max-width: 450px) {
+  .footer {
+    height: auto;
+  }
+  .list-container {
+    display: block;
+  }
 }

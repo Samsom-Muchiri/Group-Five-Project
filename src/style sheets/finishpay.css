@@ -1,0 +1,56 @@
+.Pay-container {
+  display: flex;
+  justify-content: center;
+}
+.payment-methods img {
+  width: 200px;
+  height: 70px;
+}
+.paypal {
+  width: 100vw;
+  max-width: 500px;
+}
+.paypalForm {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.297);
+  border-radius: 10px;
+  padding: 20px;
+  height: auto;
+}
+.paypal form div {
+  margin-right: 10px;
+}
+
+.paypalForm input {
+  all: unset;
+  border: solid 1px gray;
+  margin: 5px 0px;
+  padding-left: 10px;
+  width: 93%;
+}
+.paypal button {
+  all: unset;
+  width: 100%;
+  margin-top: 5px;
+  text-align: center;
+  border-radius: 5px;
+  background-color: #b5e550;
+  padding: 10px 5px;
+}
+.center {
+  display: flex;
+  width: 95%;
+  justify-content: space-around;
+}
+.center input {
+  width: 45%;
+}
+.mpesa {
+  margin: 30px 0px;
+}
+.mpesa img {
+  width: 300px;
+  height: 100px;
+}
+.mpesa form {
+  margin-top: 20px;
+}
