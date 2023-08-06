@@ -14,7 +14,6 @@ function Nav() {
   const vl = useContext(Appcontext);
   const [searchItems, setSearchItems] = useState([]);
   const itemCount = vl.addedItems.length;
-  console.log(vl.userIsLoged);
   let userInfo =
     vl.userIsLoged === null
       ? { first_name: "", last_name: "", email: "", password: "" }
