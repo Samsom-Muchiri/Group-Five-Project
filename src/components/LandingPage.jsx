@@ -38,7 +38,11 @@ function LandingPage() {
       ranking,
     } = itm;
     return (
-      <div className="item" key={product_name}>
+      <div
+        className="item"
+        key={product_name}
+        title="Click on image to view full details"
+      >
         <Link to={product_name}>
           <img src={product_full_image} alt={product_name} />
         </Link>

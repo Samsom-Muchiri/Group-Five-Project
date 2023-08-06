@@ -5,10 +5,12 @@ nav {
   z-index: 7;
   background-color: white;
 }
+.log-btn {
+  cursor: pointer;
+}
 .log-btn a {
   all: unset;
   margin: 0px 5px;
-  cursor: pointer;
 }
 .log-btn a:active {
   color: #607c3c;
@@ -161,6 +163,97 @@ nav form input {
   margin-top: 20px;
   z-index: 11;
 }
+.profile-div {
+  position: fixed;
+  left: 0%;
+  top: -50%;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  z-index: 10;
+}
+.profile {
+  position: relative;
+  width: 85vw;
+  max-width: 500px;
+  height: 30vh;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  border: solid 1px greenyellow;
+  background-color: white;
+}
+.profile-loader-class-open {
+  animation: load-in 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+}
+.profile-loader-class-open::after {
+  content: "";
+  display: block;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.737);
+  z-index: -1;
+}
+.profile-loader-class-closed {
+  animation: load-out 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+}
+
+@keyframes load-in {
+  0% {
+    top: -50%;
+  }
+  100% {
+    top: 20%;
+  }
+}
+@keyframes load-out {
+  0% {
+    top: 20%;
+  }
+  100% {
+    top: -50%;
+  }
+}
+
+.profile h1 {
+  text-align: start;
+}
+.profile .fa-times-circle {
+  position: absolute;
+  color: #607c3c;
+  font-size: 20px;
+  top: -5%;
+  right: -5%;
+}
+.profile .fa-times-circle:hover {
+  color: #b5e550;
+}
+.profile-logo {
+  color: #607c3c;
+  font-size: 70px;
+  display: grid;
+  place-items: center;
+}
+.user-names {
+  display: flex;
+  align-items: center;
+}
+.user-names button {
+  all: unset;
+  margin-left: 60%;
+  padding: 3px 5px;
+  background-color: #b5e550;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.user-names button:hover {
+  background-color: #abc32f;
+}
+.user-names button:active {
+  background-color: #ececa3;
+}
 @media (max-width: 625px) {
   .dsk-search {
     display: none;
@@ -194,7 +287,7 @@ nav form input {
     padding: 10px 10px;
     font-size: 20px;
     position: absolute;
-    right: 6%;
+    right: 13%;
     pointer-events: all;
     cursor: pointer;
   }
@@ -206,7 +299,7 @@ nav form input {
     font-size: larger;
   }
   .search {
-    left: 6%;
+    left: 16%;
     margin-top: 45px;
     pointer-events: all;
   }

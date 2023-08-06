@@ -51,8 +51,8 @@ function LoginPage() {
     }
   }
   function upDateUserInContext(data) {
-    const name = data.first_name;
-    vl.setUser(name);
+    const userInfo = data;
+    vl.setUser(userInfo);
   }
   function handleInput(e) {
     const value = e.target.value;

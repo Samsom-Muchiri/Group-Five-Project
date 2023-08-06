@@ -46,6 +46,12 @@
   font-size: 30px;
   cursor: pointer;
 }
+.close-cart:hover {
+  background-color: #abc32f;
+}
+.close-cart:active {
+  background-color: #ececa3;
+}
 .close-cart::after {
   content: attr(datacount);
   display: grid;
