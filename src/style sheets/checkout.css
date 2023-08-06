@@ -1,6 +1,6 @@
 .container {
   position: relative;
-  padding-top: 150px;
+  padding: 150px 20px 0px 20px;
 }
 h1 {
   text-align: center;
@@ -19,7 +19,9 @@ h1 {
 }
 .container form input {
   padding: 5px 2px;
-  margin: 10px;
+  margin: 15px 15px;
+  min-width: 200px;
+  border: solid 1px gray;
   width: 25%;
 }
 .container textarea {
@@ -72,7 +74,7 @@ h1 {
   background-color: #607c3c;
   position: absolute;
   top: 10%;
-  right: -2%;
+  right: 2%;
   padding: 10px 20px;
   margin-top: 55px;
   color: white;
@@ -88,4 +90,9 @@ h1 {
 }
 .scroller-2::-webkit-scrollbar {
   width: 0%;
+}
+@media (max-width: 430px) {
+  .container form input {
+    width: 100%;
+  }
 }

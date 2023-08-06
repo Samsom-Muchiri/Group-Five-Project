@@ -3,20 +3,25 @@ import "../style sheets/nav.css";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import CartItem from "./CartItem";
 import { Appcontext } from "../context/Contexts";
+import Loader from "./Loader";
 
 function Nav() {
   const [menuIsOpen, setMenuIsOpen] = useState(true);
   const [searchIsOpen, setSearchIsOpen] = useState(false);
   const [searchState, setSearchState] = useState("");
-  const [userIsUpdated, setUserIsUpdated] = useState(null);
   const [userHasLogedOut, setUserHasLogedOut] = useState(null);
+  const [profileIsOpen, setProfileIsOpen] = useState(false);
   const vl = useContext(Appcontext);
   const [searchItems, setSearchItems] = useState([]);
   const itemCount = vl.addedItems.length;
-
+  let userInfo =
+    vl.userIsLoged === null
+      ? { first_name: "", last_name: "", email: "", password: "" }
+      : vl.userIsLoged;
+  const { first_name, last_name, email, is_active, created } = userInfo;
   useEffect(() => {
     if (vl.userIsLoged !== null) {
-      setUserHasLogedOut(vl.userIsLoged);
+      setUserHasLogedOut(first_name);
     }
   }, [vl.userIsLoged]);
   function handleSearch(e) {
@@ -68,7 +73,14 @@ function Nav() {
   }
   function handlelogOut() {
     localStorage.removeItem("user");
+    closeProfile();
     setUserHasLogedOut(null);
+  }
+  function openProfile() {
+    setProfileIsOpen(true);
+  }
+  function closeProfile() {
+    setProfileIsOpen(false);
   }
   return (
     <>
@@ -76,7 +88,10 @@ function Nav() {
         <div className="logo-header">
           <h1>Green Space</h1>
           <p>Get the best from Green Space</p>
-          <div className="log-btn">
+          <div
+            className="log-btn"
+            onClick={userHasLogedOut !== null ? openProfile : ""}
+          >
             <i className="fa fa-user" aria-hidden="true"></i>
             {userHasLogedOut === null ? (
               <>
@@ -87,9 +102,7 @@ function Nav() {
 
               // Display user's name or other content when logged in
             )}
-            <p onClick={handlelogOut} style={{ cursor: "pointer" }}>
-              {userHasLogedOut !== null ? "log out" : ""}
-            </p>
+            <br />
           </div>
         </div>
         <form style={searchIsOpen ? { display: "flex" } : { display: "none" }}>
@@ -149,7 +162,10 @@ function Nav() {
 
             <li>
               {" "}
-              <div className="log-btn mobile-log">
+              <div
+                className="log-btn mobile-log"
+                onClick={userHasLogedOut !== null ? openProfile : ""}
+              >
                 <i className="fa fa-user" aria-hidden="true"></i>
                 {vl.userIsLoged === null ? (
                   <>
@@ -157,9 +173,9 @@ function Nav() {
                     <Link to="signin">sign in</Link>
                   </>
                 ) : (
-                  vl.userIsLoged // Display user's name or other content when logged in
+                  first_name // Display user's name or other content when logged in
                 )}
-                {vl.userIsLoged !== null ? "log out" : ""}
+                <br />
               </div>
             </li>
           </ul>
@@ -238,6 +254,39 @@ function Nav() {
           ></i>
         </div>
       </nav>
+      <div
+        className={
+          profileIsOpen
+            ? "profile-loader-class-open profile-div"
+            : "profile-loader-class-closed profile-div"
+        }
+      >
+        <div className="profile">
+          <i
+            className="fa fa-times-circle"
+            aria-hidden="true"
+            onClick={closeProfile}
+          ></i>
+          <div className="profile-logo">
+            <i class="fa fa-user" aria-hidden="true"></i>
+          </div>
+          <div className="user-names">
+            <main>
+              <p>
+                <i>First Nmae:</i> <b>{first_name}</b>
+              </p>
+              <p>
+                <i>Last Name:</i> <b>{last_name}</b>
+              </p>
+              <p>
+                <i>email:</i> <b>{email}</b>
+              </p>
+              <br />
+              <button onClick={handlelogOut}>Log out</button>
+            </main>
+          </div>
+        </div>
+      </div>
       <CartItem cartSlide={"fs"} />
       <Outlet />
       <div className="footer">

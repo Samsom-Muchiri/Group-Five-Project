@@ -10,7 +10,6 @@ function Contexts({ children }) {
   const [itemsData, setItemsData] = useState([]);
   const [userState, setUserState] = useState(null);
   const [clckedItem, setClickedItem] = useState([]);
-  const [isSubmited, setIsSubmited] = useState(false);
   const [detailForm, setDetailForm] = useState(false);
   const [users, setUsers] = useState([
     {
@@ -63,26 +62,16 @@ function Contexts({ children }) {
       .then((data) => setItemsData(data))
       .catch((error) => console.log(error));
   }, []);
+  useEffect(() => {
+    if (localStorage.getItem("user") !== null) {
+      const SU = localStorage.getItem("user");
+      const storedUser = JSON.parse(SU);
 
-  /* Check user state */
-  function findUser(userEmail) {
-    // Assuming you have an array of users
-    const foundUser = users.filter((usr) => usr.email === userEmail);
-    return foundUser;
-  }
-  if (localStorage.getItem("user") !== null) {
-    const SU = localStorage.getItem("user");
-    const storedUser = JSON.parse(SU);
-    const userEmail = storedUser.email;
-    const foundUser = findUser(userEmail);
-
-    if (foundUser.length !== 0) {
-      setUserState(storedUser.first_name);
+      setUserState(storedUser);
     }
-  }
-
-  function setUserName(userName) {
-    setUserState(userName);
+  }, []);
+  function setUserName(userInfo) {
+    setUserState(userInfo);
   }
   /* Check location */
   function handleCartPos(q) {

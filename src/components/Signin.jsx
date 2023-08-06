@@ -47,8 +47,8 @@ function Signin() {
       .catch((error) => console.log(error));
   }
   function upDateUserInContext(data) {
-    const name = data.first_name;
-    vl.setUser(name);
+    const userInfo = data;
+    vl.setUser(userInfo);
   }
   function handleFirstName(e) {
     const value = e.target.value;
