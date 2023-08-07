@@ -16,7 +16,7 @@ function LoginPage() {
     };
     console.log(LogData);
     setLoading(true);
-    loginUser(LogData);
+    loginUser(JSON.stringify(LogData));
   }
   async function loginUser(LogData) {
     try {
