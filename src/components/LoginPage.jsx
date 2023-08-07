@@ -14,7 +14,7 @@ function LoginPage() {
       username: inputState,
       password: pwdState,
     };
-    console.log("loading");
+    console.log(LogData);
     setLoading(true);
     loginUser(LogData);
   }
