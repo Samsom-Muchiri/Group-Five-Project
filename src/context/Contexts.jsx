@@ -11,24 +11,7 @@ function Contexts({ children }) {
   const [userState, setUserState] = useState(null);
   const [clckedItem, setClickedItem] = useState([]);
   const [detailForm, setDetailForm] = useState(false);
-  const [users, setUsers] = useState([
-    {
-      first_name: "string",
-      last_name: "string",
-      email: "string",
-      is_active: true,
-      created: "2019-08-24T14:15:22Z",
-      updated: "2019-08-24T14:15:22Z",
-    },
-    {
-      first_name: "string2",
-      last_name: "string2",
-      email: "string2",
-      is_active: true,
-      created: "2019-08-24T14:15:22Z",
-      updated: "2019-08-24T14:15:22Z",
-    },
-  ]);
+  const [payCardIsOpen, setPayCardIsOpen] = useState(false);
 
   const PRODUCT_URL = " http://ecommerce.muersolutions.com/api/v1/products";
 
@@ -41,7 +24,9 @@ function Contexts({ children }) {
     addedItems: clckedItem,
     addTocartF: handleAddtocart,
     deleteItem: handleDelete,
-
+    openPay: openPayCard,
+    payCardState: payCardIsOpen,
+    closePay: closePayCard,
     detailS: detailForm,
     detailIsFill: fn,
     setUser: setUserName,
@@ -90,6 +75,13 @@ function Contexts({ children }) {
 
   function fn() {
     setDetailForm(true);
+  }
+
+  function openPayCard(type) {
+    setPayCardIsOpen(type);
+  }
+  function closePayCard() {
+    setPayCardIsOpen(false);
   }
 
   return <Appcontext.Provider value={values}>{children}</Appcontext.Provider>;

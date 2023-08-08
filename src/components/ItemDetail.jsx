@@ -30,42 +30,44 @@ function ItemDetail() {
       }
     }
   }
-  const {
-    product_name,
-    product_description,
-    unit_price,
-    product_full_image,
-    product_thumbnail,
-    ranking,
-    created,
-    updated,
-  } = item;
-  return (
-    <div className="div4">
-      <div className="item-container1">
-        <img src={product_full_image} alt={product_name} />
-        <div className="desc">
-          <h1>{product_name}</h1>
-          <p>{product_thumbnail}</p>
-          <p>{product_description}</p>
-          <p>{created}</p>
-          <p>{updated}</p>
-          <p>{unit_price}</p>
-          <div className="rank-d">
-            <p>{generateHString(ranking)} </p>
-            <button
-              className="cart-Btn"
-              onClick={() =>
-                handleAddToCart(product_name, unit_price, product_full_image)
-              }
-            >
-              Add To Cart
-            </button>
+  if (item !== undefined) {
+    const {
+      product_name,
+      product_description,
+      unit_price,
+      product_full_image,
+      product_thumbnail,
+      ranking,
+      created,
+      updated,
+    } = item;
+    return (
+      <div className="div4">
+        <div className="item-container1">
+          <img src={product_full_image} alt={product_name} />
+          <div className="desc">
+            <h1>{product_name}</h1>
+            <p>{product_thumbnail}</p>
+            <p>{product_description}</p>
+            <p>{created}</p>
+            <p>{updated}</p>
+            <p>{unit_price}</p>
+            <div className="rank-d">
+              <p>{generateHString(ranking)} </p>
+              <button
+                className="cart-Btn"
+                onClick={() =>
+                  handleAddToCart(product_name, unit_price, product_full_image)
+                }
+              >
+                Add To Cart
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default ItemDetail;

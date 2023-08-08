@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "../style sheets/checkout.css";
 import { Appcontext } from "../context/Contexts";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function FillDetail() {
   const [formValues, setFormValues] = useState([]);
@@ -15,11 +15,13 @@ function FillDetail() {
     setCartCount(count);
     setCartData(itemObj);
   }, []);
-
+  const navigateToFinalStep = useNavigate();
   function handleSubmit(e) {
     e.preventDefault();
-
-    localStorage.setItem("Detail_Data", JSON.stringify(formValues));
+    const usersDeteilObj = formValues;
+    usersDeteilObj["items_length"] = vl.addedItems.length;
+    localStorage.setItem("Detail_Data", JSON.stringify(usersDeteilObj));
+    navigateToFinalStep("pay");
   }
   useEffect(() => {
     const count = itemObj.length;
@@ -50,12 +52,13 @@ function FillDetail() {
    */ const oblLength = Object.keys(formValues).length;
   function handleInput(e) {
     const attr = e.target.getAttribute("placeholder");
+    const key = attr.replace(" ", "_");
     const value = e.target.value;
 
     setFormValues((prevFormValues) => ({
       ...prevFormValues,
       total_Price: totalPrice,
-      [attr]: value,
+      [key]: value,
     }));
   }
 
@@ -154,22 +157,21 @@ function FillDetail() {
             placeholder="Leave a note for us"
             onChange={handleInput}
           />
-          <Link to={oblLength >= 8 ? "pay" : ""}>
-            <div className="next">
-              <label htmlFor="submit-form">
-                <button
-                  style={
-                    oblLength < 8
-                      ? { cursor: "not-allowed" }
-                      : { cursor: "pointer" }
-                  }
-                  onClick={() => vl.detailIsFill()}
-                >
-                  Next Step
-                </button>
-              </label>
-            </div>
-          </Link>
+
+          <div className="next">
+            <label htmlFor="submit-form">
+              <button
+                style={
+                  oblLength < 8
+                    ? { cursor: "not-allowed" }
+                    : { cursor: "pointer" }
+                }
+                onClick={() => vl.detailIsFill()}
+              >
+                Next Step
+              </button>
+            </label>
+          </div>
         </form>
         <div className="orders">
           <center>

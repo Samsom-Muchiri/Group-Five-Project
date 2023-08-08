@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 function CartItem() {
   const [cartCount, setCartCount] = useState(0);
-  const [quantityCount, setQuantityCount] = useState(0);
   const [cartData, setCartData] = useState([]);
   const vl = useContext(Appcontext);
   const [itemObj, setItemObj] = useState([]);
@@ -39,8 +38,14 @@ function CartItem() {
     (acc, item) => acc + item.price * item.quantity,
     0
   );
+  const currencyFormaterKsh = new Intl.NumberFormat("en-KE", {
+    format: "currency",
+    currency: "KES",
+  });
+  const currencyPrice = currencyFormaterKsh.format(totalPrice);
   const newItem = itemObj.map((itm, i) => {
     const { name, price, image, quantity } = itm;
+    const formatedPrice = currencyFormaterKsh.format(price);
     return (
       <div className="cartitem" key={i}>
         <div className="cart-item-container">
@@ -56,7 +61,7 @@ function CartItem() {
         </div>
         <div className="price-container">
           <p>
-            Price: <b>Ksh{price}</b>
+            Price: <b>Ksh{formatedPrice}</b>
           </p>
           <span>
             Quantity
@@ -81,7 +86,7 @@ function CartItem() {
     <div className="cart-item" style={vl.cartPos}>
       <center>
         <h3>Your Cart</h3>
-        <span>Total: Ksh{totalPrice}</span>
+        <span>Total: Ksh{currencyPrice}</span>
       </center>
       <div className="center">
         <div className="close-cart" datacount={ccount} onClick={closeCart}>
