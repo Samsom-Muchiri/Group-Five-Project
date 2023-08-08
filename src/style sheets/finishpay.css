@@ -1,6 +1,7 @@
 .Pay-container {
   display: flex;
   justify-content: center;
+  gap: 20px;
 }
 .pay-details-container {
   width: 80vw;

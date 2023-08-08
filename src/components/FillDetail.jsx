@@ -7,27 +7,46 @@ function FillDetail() {
   const [formValues, setFormValues] = useState([]);
   const vl = useContext(Appcontext);
   const [itemObj, setItemObj] = useState([]);
-  const [cartCount, setCartCount] = useState(0);
-  const [cartData, setCartData] = useState([]);
 
-  useEffect(() => {
-    const count = itemObj.length;
-    setCartCount(count);
-    setCartData(itemObj);
-  }, []);
   const navigateToFinalStep = useNavigate();
+  const backToHome = useNavigate();
+  useEffect(() => {
+    if (vl.addedItems.length < 1) {
+      backToHome("/");
+    }
+  }, [vl.addedItems]);
+  const totalPrice = itemObj.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
+  useEffect(() => {
+    setFormValues((prev) => ({ ...prev, total_Price: totalPrice }));
+  }, [totalPrice]);
   function handleSubmit(e) {
     e.preventDefault();
     const usersDeteilObj = formValues;
     usersDeteilObj["items_length"] = vl.addedItems.length;
-    localStorage.setItem("Detail_Data", JSON.stringify(usersDeteilObj));
+    (usersDeteilObj[" total_Price"] = totalPrice),
+      localStorage.setItem("Detail_Data", JSON.stringify(usersDeteilObj));
     navigateToFinalStep("pay");
   }
   useEffect(() => {
-    const count = itemObj.length;
-    setCartCount(count);
-    setCartData(itemObj);
+    if (localStorage.getItem("Detail_Data") !== null) {
+      const data = JSON.parse(localStorage.getItem("Detail_Data"));
+      setFormValues(data);
+    }
   }, []);
+
+  const {
+    First_Name,
+    Last_Name,
+    Phone_Number,
+    Street,
+    City,
+    Email,
+    Apartment_suite_unit_etc,
+    Address,
+  } = formValues;
   useEffect(() => {
     const obj = vl.addedItems.map((item) => ({ ...item, quantity: 1 }));
     setItemObj(obj);
@@ -40,24 +59,19 @@ function FillDetail() {
       )
     );
   }
-  const totalPrice = itemObj.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
+
   function handleDelete(name) {
     vl.deleteItem(name);
   }
-  /* detailS: detailForm, */
-  /*   console.log(vl.detailS);
-   */ const oblLength = Object.keys(formValues).length;
+  const oblLength = Object.keys(formValues).length;
   function handleInput(e) {
     const attr = e.target.getAttribute("placeholder");
-    const key = attr.replace(" ", "_");
+    const key = attr.replace(/\//g, "_").replace(/\s+/g, "_").replace("..", "");
     const value = e.target.value;
 
     setFormValues((prevFormValues) => ({
       ...prevFormValues,
-      total_Price: totalPrice,
+
       [key]: value,
     }));
   }
@@ -101,23 +115,27 @@ function FillDetail() {
               type="text"
               placeholder="First Name"
               required
+              value={First_Name}
               onChange={handleInput}
             />
             <input
               type="text"
               placeholder="Last Name"
               required
+              value={Last_Name}
               onChange={handleInput}
             />
             <input
               type="number"
               placeholder="Phone Number"
+              value={Phone_Number}
               required
               onChange={handleInput}
             />
             <input
               type="text"
               placeholder="Email"
+              value={Email}
               required
               onChange={handleInput}
             />
@@ -128,24 +146,28 @@ function FillDetail() {
             <input
               type="text"
               placeholder="Street"
+              value={Street}
               required
               onChange={handleInput}
             />
             <input
               type="text"
               placeholder="Apartment/suite/unit etc.."
+              value={Apartment_suite_unit_etc}
               required
               onChange={handleInput}
             />
             <input
               type="text"
               placeholder="Address"
+              value={Address}
               required
               onChange={handleInput}
             />
             <input
               type="text"
               placeholder="City"
+              value={City}
               required
               onChange={handleInput}
             />
