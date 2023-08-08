@@ -37,11 +37,13 @@ function LandingPage() {
       product_full_image,
       ranking,
     } = itm;
+    const id = product_name.replace(/\s+/g, "");
     return (
       <div
         className="item"
-        key={product_name}
+        key={id}
         title="Click on image to view full details"
+        id={id}
       >
         <Link to={product_name}>
           <img src={product_full_image} alt={product_name} />

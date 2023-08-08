@@ -1,12 +1,14 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "../style sheets/checkout.css";
 import Paypal from "./paypal";
 import { Appcontext } from "../context/Contexts";
+import { Link } from "react-router-dom";
 
 function Payment() {
   const [userData, setUserData] = useState({});
   const [payWith, setPayWith] = useState("");
   const vl = useContext(Appcontext);
+
   useState(() => {
     if (localStorage.getItem("Detail_Data") !== null) {
       const userPayDetail = JSON.parse(localStorage.getItem("Detail_Data"));
@@ -22,15 +24,12 @@ function Payment() {
   }
   const {
     total_Price,
-    First_Name,
-    Last_Name,
     Email,
     Street,
-    /* 'Apartment/suite/unit etc.. */
+    Apartment_suite_unit_etc,
     Address,
     City,
     items_length,
-    Leave_a_note_for_us,
     Phone_Number,
   } = userData;
   const currencyFormaterKsh = new Intl.NumberFormat("en-US", {
@@ -67,7 +66,7 @@ function Payment() {
               <i>Street</i> {Street}
             </p>
             <p>
-              <i>Apartment/suite/unite etc... :</i> {userData[0]}
+              <i>Apartment/suite/unite etc... :</i> {Apartment_suite_unit_etc}
             </p>
             <p>
               <i>Address:</i> {Address}
@@ -107,7 +106,9 @@ function Payment() {
           </form>
         </div>{" "}
       </div>{" "}
-      <button className="prev-btn">Previous</button>
+      <Link to="/checkout">
+        <button className="prev-btn">Previous</button>
+      </Link>
       <Paypal data={userData} />
     </>
   );

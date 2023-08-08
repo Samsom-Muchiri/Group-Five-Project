@@ -167,13 +167,13 @@ function Nav() {
                 onClick={userHasLogedOut !== null ? openProfile : ""}
               >
                 <i className="fa fa-user" aria-hidden="true"></i>
-                {vl.userIsLoged === null ? (
+                {userHasLogedOut === null ? (
                   <>
                     <Link to="login">login</Link> /{" "}
                     <Link to="signin">sign in</Link>
                   </>
                 ) : (
-                  first_name // Display user's name or other content when logged in
+                  userHasLogedOut
                 )}
                 <br />
               </div>

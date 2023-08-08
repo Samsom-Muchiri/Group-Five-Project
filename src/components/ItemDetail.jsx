@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../style sheets/detailpage.css";
 import { Appcontext } from "../context/Contexts";
 
@@ -41,19 +41,23 @@ function ItemDetail() {
       created,
       updated,
     } = item;
+    const id = product_name.replace(/\s+/g, "");
     return (
       <div className="div4">
         <div className="item-container1">
           <img src={product_full_image} alt={product_name} />
           <div className="desc">
             <h1>{product_name}</h1>
-            <p>{product_thumbnail}</p>
+
             <p>{product_description}</p>
             <p>{created}</p>
             <p>{updated}</p>
             <p>{unit_price}</p>
             <div className="rank-d">
               <p>{generateHString(ranking)} </p>
+              <Link to={`/#${id}`}>
+                <button className="cart-Btn">Back</button>
+              </Link>
               <button
                 className="cart-Btn"
                 onClick={() =>
