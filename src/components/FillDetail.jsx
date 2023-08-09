@@ -10,11 +10,11 @@ function FillDetail() {
 
   const navigateToFinalStep = useNavigate();
   const backToHome = useNavigate();
-  useEffect(() => {
+  /* useEffect(() => {
     if (vl.addedItems.length < 1) {
       backToHome("/");
     }
-  }, [vl.addedItems]);
+  }, [vl.addedItems]); */
   const totalPrice = itemObj.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
