@@ -100,13 +100,14 @@ function CartItem() {
             <div className="checkout">
               <h3>Check Out</h3>
               <div>
+                {/* commented this lines to check mpesa API */}
                 <Link
-                  to={itemObj.length === 0 ? "/" : "checkout"}
-                  style={
+                  to={/* itemObj.length === 0 ? "/" : */ "checkout"}
+                  /* style={
                     itemObj.length === 0
                       ? { cursor: "not-allowed" }
                       : { pointerEvents: "all" }
-                  }
+                  } */
                 >
                   <button className="checkout-btn" onClick={closeCart}>
                     Checkout
